@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <style>
+        table{
+            padding: 20px;
+        }
+        th{ 
+            color:#fff;
+                }
+        body{
+            width:100%;
+        }
+        h1{
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+    
+    <body>
+        <h1> Dragon Ball likovi</h1>
+        
+    <table class="table table-striped">
+        <tr  class="bg-info">
+            <th> Ime</th>
+            <th> Rasa</th>
+            <th> Opis</th>
+            <th> HEALT</th>
+            <th>ATT</th>
+            <th>DEF</th>
+            <th> KiRestoreSpeed</th>
+        </tr>
+    
+        <tbody id="myTable">
+            
+        </tbody>
+    </table>
+</body>
+    <script>
+   
+        fetch('https://raw.githubusercontent.com/andrewbaisden/dragonball-character-database/master/client/db.json')
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+
+
+            var table = document.getElementById('myTable')
+      
+            for (var i = 0; i < data.characters.length; i++){
+                console.log(data.characters[i]);
+                var row = `<tr>
+                                <td>${data.characters[i].name}</td>
+                                <td>${data.characters[i].race}</td>
+                                <td>${data.characters[i].bio}</td>
+                                <td>${data.characters[i].health}</td>
+                                <td>${data.characters[i].attack}</td>
+                                <td>${data.characters[i].defense}</td>
+                                <td>${data.characters[i].kiRestoreSpeed}</td>
+                          </tr>`
+                table.innerHTML += row
+    
+    
+            }
+        })
+    
+    </script>
+
+
+
+</html>
